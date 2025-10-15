@@ -58,6 +58,50 @@ class Program
         InitializeTestData();
 
         Console.WriteLine("=== СИСТЕМА УЧЁТА БИБЛИОТЕКИ ==="); 
+        
+        while (true)
+        {
+            ShowMenu();
+
+            int choice;
+            if (!int.TryParse(Console.ReadLine(), out choice))
+            {
+                Console.WriteLine("Ошибка ввода! Введите число от 1 до 8.");
+                continue;
+            }
+            switch (choice)
+            {
+                case 1:
+                    AddBook();
+                    break;
+                case 2:
+                    RemoveBook();
+                    break;
+                case 3:
+                    SearchBooks();
+                    break;
+                case 4:
+                    SortBooks();
+                    break;
+                case 5:
+                    ShowPriceExtremes();
+                    break;
+                case 6:
+                    ShowBooksByAuthors();
+                    break;
+                case 7:
+                    ShowAllBooks();
+                    break;
+                case 8:
+                    Console.WriteLine("До свидания!");
+                    return;
+                default:
+                    Console.WriteLine("Неверный выбор! Введите число от 1 до 8.");
+                    break;
+            }
+        }
+    }
     
+
     
     
