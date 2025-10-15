@@ -434,6 +434,26 @@ class Program
             Console.WriteLine($"Общая стоимость: {totalValue:C}");
         }
     }
+    static void ShowAllBooks()
+    {
+        if (!books.Any())
+        {
+            Console.WriteLine("Библиотека пуста!");
+            return;
+        }
+
+        Console.WriteLine("\n=== ВСЕ КНИГИ В БИБЛИОТЕКЕ ===");
+        Console.WriteLine($"Всего книг: {books.Count}");
+        decimal totalValue = books.Sum(b => b.Price);
+        Console.WriteLine($"Общая стоимость коллекции: {totalValue:C}");
+        Console.WriteLine(new string('-', 80));
+
+        foreach (var book in books)
+        {
+            Console.WriteLine(book);
+        }
+    }
+}
 
 
 
