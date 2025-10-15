@@ -402,6 +402,38 @@ class Program
             Console.WriteLine($"Самая дешёвая книга: {cheapBooks[0]}");
         }
     }
+    static void ShowBooksByAuthors()
+    {
+        if (!books.Any())
+        {
+            Console.WriteLine("Библиотека пуста!");
+            return;
+        }
+
+        Console.WriteLine("\n=== КНИГИ ПО АВТОРАМ ===");
+
+        List<IGrouping<string, Book>> booksByAuthor = books
+            .GroupBy(b => b.Author)
+            .OrderBy(g => g.Key)
+            .ToList();
+
+        foreach (var authorGroup in booksByAuthor)
+        {
+            List<Book> authorBooks = authorGroup
+                .OrderBy(b => b.Year)
+                .ToList();
+
+            Console.WriteLine($"\nАвтор: {authorGroup.Key}");
+            Console.WriteLine($"Количество книг: {authorBooks.Count}");
+            Console.WriteLine("Книги:");
+            foreach (var book in authorBooks)
+            {
+                Console.WriteLine($"  - {book.Title} ({book.Year}) - {book.Genre} - {book.Price:C}");
+            }
+            decimal totalValue = authorBooks.Sum(b => b.Price);
+            Console.WriteLine($"Общая стоимость: {totalValue:C}");
+        }
+    }
 
 
 
