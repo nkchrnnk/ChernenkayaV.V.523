@@ -189,6 +189,37 @@ class Program
         books.Add(newBook);
         Console.WriteLine($"Книга '{title}' успешно добавлена с ID {newBook.Id}!");
     }
+    static void RemoveBook()
+    {
+        if (!books.Any())
+        {
+            Console.WriteLine("Библиотека пуста!");
+            return;
+        }
+
+        Console.WriteLine("\n=== УДАЛЕНИЕ КНИГИ ===");
+        ShowAllBooks();
+
+        Console.Write("Введите ID книги для удаления: ");
+        if (!int.TryParse(Console.ReadLine(), out int idToRemove))
+        {
+            Console.WriteLine("Ошибка: ID должен быть числом!");
+            return;
+        }
+
+        var bookToRemove = books.FirstOrDefault(b => b.Id == idToRemove);
+
+        if (bookToRemove != null)
+        {
+            books.Remove(bookToRemove);
+            Console.WriteLine($"Книга '{bookToRemove.Title}' успешно удалена!");
+        }
+        else
+        {
+            Console.WriteLine("Книга с таким ID не найдена!");
+        }
+    }
+
     
 
     
