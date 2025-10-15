@@ -372,6 +372,37 @@ class Program
             Console.WriteLine(book);
         }
     }
+    
+    static void ShowPriceExtremes()
+    {
+        if (!books.Any())
+        {
+            Console.WriteLine("Библиотека пуста!");
+            return;
+        }
+
+        Console.WriteLine("\n=== САМАЯ ДОРОГАЯ И ДЕШЁВАЯ КНИГА ===");
+
+        List<Book> expensiveBooks = books
+            .OrderByDescending(b => b.Price)
+            .Take(1)
+            .ToList();
+
+        List<Book> cheapBooks = books
+            .OrderBy(b => b.Price)
+            .Take(1)
+            .ToList();
+
+        if (expensiveBooks.Count > 0)
+        {
+            Console.WriteLine($"Самая дорогая книга: {expensiveBooks[0]}");
+        }
+        if (cheapBooks.Count > 0)
+        {
+            Console.WriteLine($"Самая дешёвая книга: {cheapBooks[0]}");
+        }
+    }
+
 
 
     
