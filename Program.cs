@@ -45,6 +45,19 @@ public class Book
     }
 }
 
+class Program
+{
+    static List<Book> books = new List<Book>();
+    static int nextId = 1;
 
+    static void Main(string[] args)
+    {
+        Console.OutputEncoding = Encoding.UTF8;
+        Console.InputEncoding = Encoding.UTF8;
+
+        InitializeTestData();
+
+        Console.WriteLine("=== СИСТЕМА УЧЁТА БИБЛИОТЕКИ ==="); 
+    
     
     
