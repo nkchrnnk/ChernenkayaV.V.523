@@ -219,6 +219,91 @@ class Program
             Console.WriteLine("Книга с таким ID не найдена!");
         }
     }
+    static void SearchBooks()
+    {
+        if (!books.Any())
+        {
+            Console.WriteLine("Библиотека пуста!");
+            return;
+        }
+
+        Console.WriteLine("\n=== ПОИСК КНИГ ===");
+        Console.WriteLine("1. По названию");
+        Console.WriteLine("2. По автору");
+        Console.WriteLine("3. По жанру");
+        Console.Write("Выберите тип поиска: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int searchType) || searchType < 1 || searchType > 3)
+        {
+            Console.WriteLine("Ошибка: выберите вариант от 1 до 3!");
+            return;
+        }
+
+        List<Book> searchResults;
+
+        switch (searchType)
+        {
+            case 1:
+                Console.Write("Введите название для поиска: ");
+                string titleSearch = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(titleSearch))
+                {
+                    Console.WriteLine("Поисковый запрос не может быть пустым!");
+                    return;
+                }
+                searchResults = books
+                    .Where(b => b.Title.ToLower().Contains(titleSearch.ToLower()))
+                    .ToList();
+                break;
+            case 2:
+                Console.Write("Введите автора для поиска: ");
+                string authorSearch = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(authorSearch))
+                {
+                    Console.WriteLine("Поисковый запрос не может быть пустым!");
+                    return;
+                }
+                searchResults = books
+                    .Where(b => b.Author.ToLower().Contains(authorSearch.ToLower()))
+                    .ToList();
+                break;
+            case 3:
+                Console.WriteLine("Выберите жанр:");
+                var genres = Enum.GetValues(typeof(Genre));
+                for (int i = 0; i < genres.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {genres.GetValue(i)}");
+                }
+                Console.Write("Жанр (номер): ");
+                if (!int.TryParse(Console.ReadLine(), out int genreChoice) || genreChoice < 1 || genreChoice > genres.Length)
+                {
+                    Console.WriteLine($"Ошибка: выберите жанр от 1 до {genres.Length}!");
+                    return;
+                }
+                Genre selectedGenre = (Genre)(genreChoice - 1);
+                searchResults = books
+                    .Where(b => b.Genre == selectedGenre)
+                    .ToList();
+                break;
+            default:
+                return;
+        }
+
+        if (searchResults.Count > 0)
+        {
+            Console.WriteLine($"\nНайдено книг: {searchResults.Count}");
+            Console.WriteLine(new string('-', 80));
+            foreach (var book in searchResults)
+            {
+                Console.WriteLine(book);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Книги по вашему запросу не найдены.");
+        }
+    }
+    
 
     
 
