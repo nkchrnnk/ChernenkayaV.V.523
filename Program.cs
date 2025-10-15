@@ -114,6 +114,20 @@ class Program
 
         Console.WriteLine("Добавлено 5 тестовых книг.");
     }
+    static void ShowMenu()
+    {
+        Console.WriteLine("\n=== ГЛАВНОЕ МЕНЮ ===");
+        Console.WriteLine("1. Добавить книгу");
+        Console.WriteLine("2. Удалить книгу по ID");
+        Console.WriteLine("3. Найти книги");
+        Console.WriteLine("4. Отсортировать книги");
+        Console.WriteLine("5. Самая дорогая и дешёвая книга");
+        Console.WriteLine("6. Книги по авторам");
+        Console.WriteLine("7. Показать все книги");
+        Console.WriteLine("8. Выход");
+        Console.Write("Выберите действие: ");
+    }
+
     
     
     
