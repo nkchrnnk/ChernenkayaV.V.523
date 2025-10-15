@@ -101,6 +101,21 @@ class Program
             }
         }
     }
+    static void InitializeTestData()
+    {
+        books.AddRange(new[]
+        {
+            new Book { Id = nextId++, Title = "Властелин Колец", Author = "Дж. Р. Р. Толкин", Genre = Genre.Фэнтези, Year = 1954, Price = 1500 },
+            new Book { Id = nextId++, Title = "1984", Author = "Джордж Оруэлл", Genre = Genre.НаучнаяФантастика, Year = 1949, Price = 800 },
+            new Book { Id = nextId++, Title = "Убийство в Восточном экспрессе", Author = "Агата Кристи", Genre = Genre.Детектив, Year = 1934, Price = 700 },
+            new Book { Id = nextId++, Title = "Гордость и предубеждение", Author = "Джейн Остин", Genre = Genre.Роман, Year = 1813, Price = 600 },
+            new Book { Id = nextId++, Title = "Шерлок Холмс", Author = "Артур Конан Дойл", Genre = Genre.Детектив, Year = 1887, Price = 900 }
+        });
+
+        Console.WriteLine("Добавлено 5 тестовых книг.");
+    }
+    
+    
     
 
     
