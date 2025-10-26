@@ -330,4 +330,17 @@ class Program
             Console.WriteLine("Преподаватель не найден!");
         }
     }
+    
+    static Student FindStudentById(int id)
+    {
+        foreach (var student in students)
+        {
+            if (student.StudentID == id)
+            {
+                return student;
+            }
+        }
+        return null;
+    }
+
 }
