@@ -343,4 +343,16 @@ class Program
         return null;
     }
 
+    static Teacher FindTeacherById(int id)
+    {
+        foreach (var teacher in teachers)
+        {
+            if (teacher.TeacherID == id)
+            {
+                return teacher;
+            }
+        }
+        return null;
+    }
+
 }
