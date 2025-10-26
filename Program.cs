@@ -138,4 +138,25 @@ class Program
         nextStudentId++;
         Console.WriteLine($"Студент успешно добавлен! ID: {student.StudentID}");
     }
+    
+    static void AddTeacher()
+    {
+        Console.WriteLine("\n=== ДОБАВЛЕНИЕ ПРЕПОДАВАТЕЛЯ ===");
+        Console.Write("ФИО: ");
+        string fio = Console.ReadLine();
+        Console.Write("Возраст: ");
+        int age = int.Parse(Console.ReadLine());
+        Console.Write("Дата рождения (гггг-мм-дд): ");
+        DateOnly birthday = DateOnly.Parse(Console.ReadLine());
+        Console.Write("Пол: ");
+        string gender = Console.ReadLine();
+        Console.Write("Стаж (лет): ");
+        int expYear = int.Parse(Console.ReadLine());
+
+        Teacher teacher = new Teacher(fio, age, birthday, gender, nextTeacherId, expYear);
+        teachers.Add(teacher);
+        nextTeacherId++;
+        Console.WriteLine($"Преподаватель успешно добавлен! ID: {teacher.TeacherID}");
+    }
+    
 }
