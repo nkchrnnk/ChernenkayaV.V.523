@@ -123,7 +123,7 @@ class Program
     }
     static void AddStudent()
     {
-        Console.WriteLine("\n=== ДОБАВЛЕНИЕ СТУДЕНТА ===");
+        Console.WriteLine("\n < ДОБАВЛЕНИЕ СТУДЕНТА > ");
         Console.Write("ФИО: ");
         string fio = Console.ReadLine();
         Console.Write("Возраст: ");
@@ -141,7 +141,7 @@ class Program
     
     static void AddTeacher()
     {
-        Console.WriteLine("\n=== ДОБАВЛЕНИЕ ПРЕПОДАВАТЕЛЯ ===");
+        Console.WriteLine("\n < ДОБАВЛЕНИЕ ПРЕПОДАВАТЕЛЯ > ");
         Console.Write("ФИО: ");
         string fio = Console.ReadLine();
         Console.Write("Возраст: ");
@@ -159,4 +159,18 @@ class Program
         Console.WriteLine($"Преподаватель успешно добавлен! ID: {teacher.TeacherID}");
     }
     
+    static void AddCourse()
+    {
+        Console.WriteLine("\n < СОЗДАНИЕ КУРСА > ");
+        Console.Write("Название курса: ");
+        string courseName = Console.ReadLine();
+        Console.Write("Год курса: ");
+        int courseYear = int.Parse(Console.ReadLine());
+
+        Course course = new Course(nextCourseId, courseName, courseYear);
+        courses.Add(course);
+        nextCourseId++;
+        Console.WriteLine($"Курс успешно создан! ID: {course.CourseID}");
+    }
+
 }
