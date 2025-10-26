@@ -173,4 +173,19 @@ class Program
         Console.WriteLine($"Курс успешно создан! ID: {course.CourseID}");
     }
 
+    static void ShowAllStudents()
+    {
+        Console.WriteLine("\n < ВСЕ СТУДЕНТЫ > ");
+        if (students.Count == 0)
+        {
+            Console.WriteLine("Студентов нет");
+            return;
+        }
+        
+        foreach (var student in students)
+        {
+            Console.WriteLine(student.GetInfo());
+        }
+    }
+    
 }
