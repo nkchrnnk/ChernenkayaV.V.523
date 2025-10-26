@@ -451,6 +451,12 @@ class Student : Human
             Console.WriteLine($"- {course.CourseName} (ID: {course.CourseID})");
         }
     }
-
+    
+    public override string GetInfo()
+    {
+        return $"Студент ID: {StudentID}, {base.GetInfo()}, Курсов: {enrolledCourses.Count}";
+    }
+    
 }
+
 
