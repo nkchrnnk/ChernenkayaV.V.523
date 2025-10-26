@@ -355,4 +355,16 @@ class Program
         return null;
     }
 
+    static Course FindCourseById(int id)
+    {
+        foreach (var course in courses)
+        {
+            if (course.CourseID == id)
+            {
+                return course;
+            }
+        }
+        return null;
+    }
+
 }
