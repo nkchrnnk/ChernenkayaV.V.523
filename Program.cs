@@ -438,6 +438,19 @@ class Student : Human
             course.AddStudent(this);
         }
     }
-    
+    public void ShowEnrolledCourses()
+    {
+        Console.WriteLine($"\nКурсы студента {FIO} (ID: {StudentID}):");
+        if (enrolledCourses.Count == 0)
+        {
+            Console.WriteLine("Нет записей на курсы");
+            return;
+        }
+        foreach (var course in enrolledCourses)
+        {
+            Console.WriteLine($"- {course.CourseName} (ID: {course.CourseID})");
+        }
+    }
+
 }
 
