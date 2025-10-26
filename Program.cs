@@ -246,6 +246,35 @@ class Program
         Console.WriteLine($"Студент {student.FIO} записан на курс {course.CourseName}");
     }
 
-    
+    static void AssignTeacherToCourse()
+    {
+        Console.WriteLine("\n < НАЗНАЧЕНИЕ ПРЕПОДАВАТЕЛЯ НА КУРС > ");
+        ShowAllTeachers();
+        ShowAllCourses();
+
+        Console.Write("Введите ID преподавателя: ");
+        int teacherId = int.Parse(Console.ReadLine());
+        Console.Write("Введите ID курса: ");
+        int courseId = int.Parse(Console.ReadLine());
+
+        Teacher teacher = FindTeacherById(teacherId);
+        Course course = FindCourseById(courseId);
+
+        if (teacher == null)
+        {
+            Console.WriteLine("Преподаватель не найден!");
+            return;
+        }
+
+        if (course == null)
+        {
+            Console.WriteLine("Курс не найден!");
+            return;
+        }
+
+        course.AssignTeacher(teacher);
+        Console.WriteLine($"Преподаватель {teacher.FIO} назначен на курс {course.CourseName}");
+    }
+
     
 }
