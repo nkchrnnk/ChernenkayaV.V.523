@@ -216,5 +216,36 @@ class Program
             Console.WriteLine(course.GetInfo());
         }
     }
+    static void EnrollStudentInCourse()
+    {
+        Console.WriteLine("\n < ЗАПИСЬ СТУДЕНТА НА КУРС >");
+        ShowAllStudents();
+        ShowAllCourses();
+
+        Console.Write("Введите ID студента: ");
+        int studentId = int.Parse(Console.ReadLine());
+        Console.Write("Введите ID курса: ");
+        int courseId = int.Parse(Console.ReadLine());
+
+        Student student = FindStudentById(studentId);
+        Course course = FindCourseById(courseId);
+
+        if (student == null)
+        {
+            Console.WriteLine("Студент не найден!");
+            return;
+        }
+
+        if (course == null)
+        {
+            Console.WriteLine("Курс не найден!");
+            return;
+        }
+        
+        student.EnrollInCourse(course);
+        Console.WriteLine($"Студент {student.FIO} записан на курс {course.CourseName}");
+    }
+
+    
     
 }
