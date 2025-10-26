@@ -530,7 +530,28 @@ class Course
             enrolledStudents.Add(student);
         }
     }
+    
+    public void ShowEnrolledStudents()
+    {
+        Console.WriteLine($"\nСтуденты курса '{CourseName}' (ID: {CourseID}):");
+        if (enrolledStudents.Count == 0)
+        {
+            Console.WriteLine("Нет записанных студентов");
+            return;
+        }
+        foreach (var student in enrolledStudents)
+        {
+            Console.WriteLine($"- {student.FIO} (ID: {student.StudentID})");
+        }
+    }
+
+    public string GetInfo()
+    {
+        string teacherInfo = assignedTeacher != null ? assignedTeacher.FIO : "Не назначен";
+        return $"Курс ID: {CourseID}, {CourseName}, Год: {CourseYear}, Преподаватель: {teacherInfo}, Студентов: {enrolledStudents.Count}";
+    }
 }
+
 
 
 
