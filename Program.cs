@@ -519,9 +519,16 @@ class Course
     
     public void AssignTeacher(Teacher teacher)
     {
-
         assignedTeacher = teacher;
         teacher.AssignToCourse(this);
+    }
+    
+    public void AddStudent(Student student)
+    {
+        if (!enrolledStudents.Contains(student))
+        {
+            enrolledStudents.Add(student);
+        }
     }
 }
 
