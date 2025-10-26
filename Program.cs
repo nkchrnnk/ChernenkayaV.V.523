@@ -481,7 +481,20 @@ class Teacher : Human
         }
     }
 
-    
+    public void ShowAssignedCourses()
+    {
+        Console.WriteLine($"\nКурсы преподавателя {FIO} (ID: {TeacherID}):");
+        if (assignedCourses.Count == 0)
+        {
+            Console.WriteLine("Нет назначенных курсов");
+            return;
+        }
+        foreach (var course in assignedCourses)
+        {
+            Console.WriteLine($"- {course.CourseName} (ID: {course.CourseID})");
+        }
+    }
+
 }
 
 
