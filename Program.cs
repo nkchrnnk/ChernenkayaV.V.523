@@ -276,5 +276,22 @@ class Program
         Console.WriteLine($"Преподаватель {teacher.FIO} назначен на курс {course.CourseName}");
     }
 
+    static void ShowStudentCourses()
+    {
+        Console.WriteLine("\n < КУРСЫ СТУДЕНТА >");
+        ShowAllStudents();
+        Console.Write("Введите ID студента: ");
+        int id = int.Parse(Console.ReadLine());
+
+        Student student = FindStudentById(id);
+        if (student != null)
+        {
+            student.ShowEnrolledCourses();
+        }
+        else
+        {
+            Console.WriteLine("Студент не найден!");
+        }
+    }
     
 }
