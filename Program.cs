@@ -121,5 +121,21 @@ class Program
             }
         }
     }
-
+    static void AddStudent()
+    {
+        Console.WriteLine("\n=== ДОБАВЛЕНИЕ СТУДЕНТА ===");
+        Console.Write("ФИО: ");
+        string fio = Console.ReadLine();
+        Console.Write("Возраст: ");
+        int age = int.Parse(Console.ReadLine());
+        Console.Write("Дата рождения (гггг-мм-дд): ");
+        DateOnly birthday = DateOnly.Parse(Console.ReadLine());
+        Console.Write("Пол: ");
+        string gender = Console.ReadLine();
+        
+        Student student = new Student(fio, age, birthday, gender, nextStudentId);
+        students.Add(student);
+        nextStudentId++;
+        Console.WriteLine($"Студент успешно добавлен! ID: {student.StudentID}");
+    }
 }
