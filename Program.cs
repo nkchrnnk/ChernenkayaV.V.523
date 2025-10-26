@@ -411,4 +411,10 @@ class Human
         Gender = gender;
     }
     
+    public virtual string GetInfo()
+    {
+        return $"{FIO}, Возраст: {Age}, Пол: {Gender}";
+    }
 }
+
+
