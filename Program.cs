@@ -203,5 +203,18 @@ class Program
         }
     }
     
+    static void ShowAllCourses()
+    {
+        Console.WriteLine("\n=== ВСЕ КУРСЫ ===");
+        if (courses.Count == 0)
+        {
+            Console.WriteLine("Курсов нет");
+            return;
+        }
+        foreach (var course in courses)
+        {
+            Console.WriteLine(course.GetInfo());
+        }
+    }
     
 }
