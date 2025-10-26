@@ -417,4 +417,18 @@ class Human
     }
 }
 
+class Student : Human
+{
+    public int StudentID { get; private set; }
+
+    private List<Course> enrolledCourses;
+
+    public Student(string fio, int age, DateOnly birthday, string gender, int studentID)
+        : base(fio, age, birthday, gender)
+    {
+        StudentID = studentID;
+        enrolledCourses = new List<Course>();
+    }
+    
+}
 
