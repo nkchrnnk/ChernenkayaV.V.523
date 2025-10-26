@@ -294,4 +294,23 @@ class Program
         }
     }
     
+    static void ShowCourseStudents()
+    {
+        Console.WriteLine("\n < СТУДЕНТЫ КУРСА > ");
+        ShowAllCourses();
+        Console.Write("Введите ID курса: ");
+        int id = int.Parse(Console.ReadLine());
+
+        Course course = FindCourseById(id);
+        if (course != null)
+        {
+         
+            course.ShowEnrolledStudents();
+        }
+        else
+        {
+            Console.WriteLine("Курс не найден!");
+        }
+    }
+
 }
