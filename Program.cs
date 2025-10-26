@@ -500,6 +500,31 @@ class Teacher : Human
     }
 }
 
+class Course
+{
+    public int CourseID { get; private set; }
+    public string CourseName { get; private set; }
+    public int CourseYear { get; private set; }
+
+    private Teacher assignedTeacher;
+    private List<Student> enrolledStudents;
+
+    public Course(int courseID, string courseName, int courseYear)
+    {
+        CourseID = courseID;
+        CourseName = courseName;
+        CourseYear = courseYear;
+        enrolledStudents = new List<Student>();
+    }
+    
+    public void AssignTeacher(Teacher teacher)
+    {
+
+        assignedTeacher = teacher;
+        teacher.AssignToCourse(this);
+    }
+}
+
 
 
 
