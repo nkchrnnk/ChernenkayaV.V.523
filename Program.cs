@@ -473,6 +473,14 @@ class Teacher : Human
         ExpYear = expYear;
         assignedCourses = new List<Course>();
     }
+    public void AssignToCourse(Course course)
+    {
+        if (!assignedCourses.Contains(course))
+        {
+            assignedCourses.Add(course);
+        }
+    }
+
     
 }
 
