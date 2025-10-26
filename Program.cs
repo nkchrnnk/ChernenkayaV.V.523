@@ -430,5 +430,14 @@ class Student : Human
         enrolledCourses = new List<Course>();
     }
     
+    public void EnrollInCourse(Course course)
+    {
+        if (!enrolledCourses.Contains(course))
+        {
+            enrolledCourses.Add(course);
+            course.AddStudent(this);
+        }
+    }
+    
 }
 
