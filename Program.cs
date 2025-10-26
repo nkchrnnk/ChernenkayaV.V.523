@@ -494,8 +494,12 @@ class Teacher : Human
             Console.WriteLine($"- {course.CourseName} (ID: {course.CourseID})");
         }
     }
-
+    public override string GetInfo()
+    {
+        return $"Преподаватель ID: {TeacherID}, {base.GetInfo()}, Стаж: {ExpYear} лет, Курсов: {assignedCourses.Count}";
+    }
 }
+
 
 
 
