@@ -188,4 +188,20 @@ class Program
         }
     }
     
+    static void ShowAllTeachers()
+    {
+        Console.WriteLine("\n < ВСЕ ПРЕПОДАВАТЕЛИ >");
+        if (teachers.Count == 0)
+        {
+            Console.WriteLine("Преподавателей нет");
+            return;
+        }
+        
+        foreach (var teacher in teachers)
+        {
+            Console.WriteLine(teacher.GetInfo());
+        }
+    }
+    
+    
 }
