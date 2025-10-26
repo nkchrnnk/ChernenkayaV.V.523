@@ -459,4 +459,22 @@ class Student : Human
     
 }
 
+class Teacher : Human
+{
+    public int TeacherID { get; private set; }
+    public int ExpYear { get; private set; }
+
+    private List<Course> assignedCourses;
+
+    public Teacher(string fio, int age, DateOnly birthday, string gender, int teacherID, int expYear)
+        : base(fio, age, birthday, gender)
+    {
+        TeacherID = teacherID;
+        ExpYear = expYear;
+        assignedCourses = new List<Course>();
+    }
+    
+}
+
+
 
