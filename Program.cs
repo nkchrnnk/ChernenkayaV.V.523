@@ -313,4 +313,21 @@ class Program
         }
     }
 
+    static void ShowTeacherCourses()
+    {
+        Console.WriteLine("\n < КУРСЫ ПРЕПОДАВАТЕЛЯ > ");
+        ShowAllTeachers();
+        Console.Write("Введите ID преподавателя: ");
+        int id = int.Parse(Console.ReadLine());
+
+        Teacher teacher = FindTeacherById(id);
+        if (teacher != null)
+        {
+            teacher.ShowAssignedCourses();
+        }
+        else
+        {
+            Console.WriteLine("Преподаватель не найден!");
+        }
+    }
 }
