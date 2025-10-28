@@ -41,3 +41,54 @@
 //Сделайте так, чтобы все шансы и случайные величины (встреча сундука/врага, тип врага, крит.
 //шанс/заморозка, величина блока 70–100%) определялись генератором случайных чисел.
 
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            Console.InputEncoding = Encoding.UTF8;
+ 
+            Game game = new Game();
+            game.Start();
+        }
+    }
+
+    class Game
+    {
+        private Hero player;
+
+        private Random random = new Random();
+
+        private int turnCount = 0;
+
+        private bool gameRunning = true;
+
+        private EnemyFactory enemyFactory;
+        private BattleSystem battleSystem;
+        private ChestSystem chestSystem;
+        private UIManager uiManager;
+
+        public Game()
+        {
+            // старт предметы для игрока
+            Armor startingArmor = new Armor(50, 10);
+            Weapon startingWeapon = new Weapon(50, 15);
+
+            // создание игрока
+            player = new Hero(startingArmor, startingWeapon);
+            player.HP = 100; 
+            player.Defense = 5; 
+            player.Damage = 10; 
+
+            // создание всех систем игры
+            enemyFactory = new EnemyFactory(random);
+            battleSystem = new BattleSystem(random);
+            chestSystem = new ChestSystem(random);
+            uiManager = new UIManager();
+        }
+        
+    }
