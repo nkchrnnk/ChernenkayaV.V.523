@@ -522,3 +522,9 @@ class Weapon
         Damage = damage;
     }
 }
+class Abstract
+{
+    public int HP { get; set; } 
+    public int Defense { get; set; }
+    public int Damage { get; set; }
+}
