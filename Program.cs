@@ -262,4 +262,141 @@ class EnemyFactory
                         freezeChance: 35, ignoresArmor: true);
     }
 }
+class BattleSystem
+{
+    private Random random;
+    private bool playerFrozen = false;
+
+    public BattleSystem(Random rand)
+    {
+        random = rand;
+    }
+
+    // начало
+    public void StartBattle(Hero player, Enemy enemy)
+    {
+        Console.WriteLine($"Бой с {enemy.Name} (HP: {enemy.HP}, Урон: {enemy.Damage})");
+
+        // бой пока кто-то не умрет
+        while (enemy.HP > 0 && player.HP > 0)
+        {
+            // ход игрока, если не заморожен
+            if (!playerFrozen)
+            {
+                PlayerTurn(player, enemy);
+            }
+            else
+            {
+                Console.WriteLine("Вы заморожены и пропускаете ход!");
+                playerFrozen = false;
+            }
+
+            // проверка на смерть врага
+            if (enemy.HP <= 0) break;
+
+            EnemyTurn(player, enemy);
+        }
+
+        if (enemy.HP <= 0)
+        {
+            Console.WriteLine($"Вы победили {enemy.Name}!");
+        }
+    }
+
+    // ход игрока
+    private void PlayerTurn(Hero player, Enemy enemy)
+    {
+        Console.WriteLine("\nВаш ход:");
+        Console.WriteLine("1 - Атака");
+        Console.WriteLine("2 - Защита");
+        Console.Write("Выберите действие: ");
+
+        string input = Console.ReadLine();
+
+        if (input == "1")
+        {
+            //базовый урон + урон оружия
+            int damage = player.Damage + player.Weapon_.Damage;
+            enemy.HP -= damage;
+            player.Weapon_.Durability -= 1; // износ 
+            Console.WriteLine($"Вы атаковали и нанесли {damage} урона!");
+        }
+        else if (input == "2")
+        {
+            // защита: 40% шанс уклониться
+            if (random.Next(100) < 40)
+            {
+                Console.WriteLine("Вы успешно уклонились от атаки!");
+                return;
+            }
+            else
+            {
+                // блок урона
+                int blockPercent = random.Next(70, 101);
+                int damageReduction = (int)(player.Defense * blockPercent / 100.0);
+                Console.WriteLine($"Вы блокируете {blockPercent}% защиты ({damageReduction} урона)");
+            }
+        }
+    }
+
+    // ход врага
+    private void EnemyTurn(Hero player, Enemy enemy)
+    {
+        Console.WriteLine($"\nХод {enemy.Name}:");
+
+        int baseDamage = enemy.Damage;
+        int finalDamage = baseDamage;
+        
+        // гоблин и крит урон
+        if (enemy.Types.Contains("гоблин") && enemy.TryCriticalHit(random))
+        {
+            finalDamage = (int)(baseDamage * 1.5);
+            Console.WriteLine($"Критический урон! Урон увеличен до {finalDamage}!");
+        }
+
+        // скелетам пофиг на броню
+        if (enemy.Types.Contains("скелет") && enemy.IgnoresArmor)
+        {
+            Console.WriteLine($"{enemy.Name} игнорирует вашу защиту!");
+        }
+        else
+        {
+            // обычный враг: урон уменьшается на защиту
+            int damageReduction = player.Defense + (int)player.Armor_.ArmorDefense;
+            finalDamage = Math.Max(1, finalDamage - damageReduction);
+        }
+
+        // маги могут замораживать
+        if (enemy.Types.Contains("маг") && enemy.TryFreeze(random))
+        {
+            playerFrozen = true;
+            Console.WriteLine($"{enemy.Name} замораживает вас! Вы пропустите следующий ход.");
+        }
+
+        //урон игроку
+        player.HP -= finalDamage;
+        player.Armor_.Durability -= 1;  // броня износ
+
+        Console.WriteLine($"{enemy.Name} атакует и наносит {finalDamage} урона!");
+        Console.WriteLine($"Ваше HP: {player.HP}");
+        
+        CheckEquipmentDurability(player);
+    }
+
+    // проверка прочности экипировки
+    private void CheckEquipmentDurability(Hero player)
+    {
+        if (player.Weapon_.Durability <= 0)
+        {
+            Console.WriteLine("Ваше оружие сломалось!");
+            player.Weapon_ = new Weapon(0, 0);
+        }
+
+        if (player.Armor_.Durability <= 0)
+        {
+            Console.WriteLine("Ваши доспехи сломались!");
+            player.Armor_ = new Armor(0, 0);
+        }
+    }
+}
 
