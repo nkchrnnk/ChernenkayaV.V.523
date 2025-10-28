@@ -396,8 +396,10 @@ class Program
     
 }
 
+//класс как пример абстракции
 class Human
 {
+    //Инкапсуляция
     public string FIO { get; private set; }
     public int Age { get; private set; }
     public DateOnly Birthday { get; private set; }
@@ -410,13 +412,14 @@ class Human
         Birthday = birthday;
         Gender = gender;
     }
-    
+    //полиморфизм
     public virtual string GetInfo()
     {
         return $"{FIO}, Возраст: {Age}, Пол: {Gender}";
     }
 }
 
+//наследование
 class Student : Human
 {
     public int StudentID { get; private set; }
@@ -452,6 +455,7 @@ class Student : Human
         }
     }
     
+    //полиформизм
     public override string GetInfo()
     {
         return $"Студент ID: {StudentID}, {base.GetInfo()}, Курсов: {enrolledCourses.Count}";
