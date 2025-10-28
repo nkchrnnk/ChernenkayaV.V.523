@@ -511,3 +511,14 @@ class Armor
         ArmorDefense = armorDefense;
     }
 }
+class Weapon
+{
+    public int Durability { get; set; }
+    public int Damage { get; set; }
+
+    public Weapon(int durability, int damage)
+    {
+        Durability = durability;
+        Damage = damage;
+    }
+}
