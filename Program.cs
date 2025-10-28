@@ -528,3 +528,14 @@ class Abstract
     public int Defense { get; set; }
     public int Damage { get; set; }
 }
+class Hero : Abstract
+{
+    public Armor Armor_ { get; set; }
+    public Weapon Weapon_ { get; set; }
+    
+    public Hero(Armor armor, Weapon weapon)
+    {
+        Armor_ = armor;
+        Weapon_ = weapon;
+    }
+}
