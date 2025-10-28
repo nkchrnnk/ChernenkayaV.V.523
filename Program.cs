@@ -179,3 +179,87 @@
             return random.Next(100) < FreezeChance;
         }
     }
+class EnemyFactory
+{
+    private Random random;
+
+    public EnemyFactory(Random rand)
+    {
+        random = rand;
+    }
+
+    //случайный обычный враг
+    public Enemy CreateRandomEnemy()
+    {
+        int enemyType = random.Next(3);
+        
+        return enemyType switch
+        {
+            0 => CreateGoblin(),
+            1 => CreateSkeleton(),
+            2 => CreateMage(),
+            _ => CreateGoblin()
+        };
+    }
+      
+    // босс
+    public Enemy CreateBoss(int turnCount)
+    {
+        int bossType = random.Next(4);
+        return bossType switch
+        {
+            0 => CreateGoblin(true),
+            1 => CreateSkeleton(true),
+            2 => CreateMage(true),
+            3 => CreateSpecialSkeleton(true),
+            _ => CreateGoblin(true)
+        };
+    }
+
+    //гоблин
+    private Enemy CreateGoblin(bool isBoss = false)
+    {
+        if (!isBoss)
+        {
+            return new Enemy("Гоблин", 30, 5, 8, new List<string> { "гоблин" }, critChance: 15);
+        }
+        else
+        {
+            return new Enemy("ВВГ (Босс Гоблин)", 60, 6, 12, new List<string> { "гоблин", "босс" }, critChance: 25);
+        }
+    }
+
+    //скелет
+    private Enemy CreateSkeleton(bool isBoss = false)
+    {
+        if (!isBoss)
+        {
+            return new Enemy("Скелет", 25, 3, 10, new List<string> { "скелет" }, ignoresArmor: true);
+        }
+        else
+        {
+            return new Enemy("Ковальский (Босс Скелет)", 63, 4, 13, new List<string> { "скелет", "босс" }, ignoresArmor: true);
+        }
+    }
+
+    //маг
+    private Enemy CreateMage(bool isBoss = false)
+    {
+        if (!isBoss)
+        {
+            return new Enemy("Маг", 20, 2, 12, new List<string> { "маг" }, freezeChance: 20);
+        }
+        else
+        {
+            return new Enemy("Архимаг C++ (Босс Маг)", 36, 2, 19, new List<string> { "маг", "босс" }, freezeChance: 30);
+        }
+    }
+
+    //особый скелет
+    private Enemy CreateSpecialSkeleton(bool isBoss = false)
+    {
+        return new Enemy("Пестов С-- (Особый Скелет)", 33, 3, 18, new List<string> { "скелет", "босs" },
+                        freezeChance: 35, ignoresArmor: true);
+    }
+}
+
