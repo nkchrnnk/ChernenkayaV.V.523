@@ -500,3 +500,14 @@ class UIManager
         Console.WriteLine($"Прочность доспехов: {player.Armor_.Durability}");
     }
 }
+class Armor
+{
+    public int Durability { get; set; } 
+    public decimal ArmorDefense { get; set; }
+
+    public Armor(int durability, decimal armorDefense)
+    {
+        Durability = durability;
+        ArmorDefense = armorDefense;
+    }
+}
