@@ -90,5 +90,56 @@
             chestSystem = new ChestSystem(random);
             uiManager = new UIManager();
         }
-        
+        public void Start()
+        {
+            Console.WriteLine("<<< ТЕКСТОВАЯ ПОШАГОВАЯ РОГАЛИК-ИГРА >>>");
+            Console.WriteLine("Нажмите любую клавишу для начала...");
+            Console.ReadKey();
+
+            // пока игра не закончится
+            while (gameRunning && player.HP > 0)
+            {
+                turnCount++;  
+                Console.WriteLine($"\n--- Ход {turnCount} ---");
+
+                uiManager.ShowPlayerStats(player);
+
+                // каждый 10-й ход босс
+                if (turnCount % 10 == 0)
+                {
+                    Enemy boss = enemyFactory.CreateBoss(turnCount);
+                    Console.WriteLine($"\nПОЯВИЛСЯ БОСС: {boss.Name}!");
+                    battleSystem.StartBattle(player, boss);
+                }
+                else
+                {
+                    // в обычный ход: 50% шанс врага, 50% шанс сундука
+                    if (random.Next(2) == 0)
+                    {
+                        Enemy enemy = enemyFactory.CreateRandomEnemy();
+                        Console.WriteLine($"\nВСТРЕЧА С ВРАГОМ: {enemy.Name}");
+                        battleSystem.StartBattle(player, enemy);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"\nВЫ НАШЛИ СУНДУК!");
+                        chestSystem.OpenChest(player);
+                    }
+                }
+
+                if (player.HP <= 0)
+                {
+                    Console.WriteLine("\nВЫ ПРОИГРАЛИ! Игра окончена.");
+                    gameRunning = false;
+                }
+                else
+                {
+                    Console.WriteLine("\nНажмите любую клавишу для продолжения...");
+                    Console.ReadKey();
+                }
+            }
+
+            Console.WriteLine($"\nИгра завершена. Пройдено ходов: {turnCount}");
+        }
     }
+    
