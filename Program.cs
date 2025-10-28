@@ -487,4 +487,16 @@ class ChestSystem
         }
     }
 }
-
+class UIManager
+{
+    // статистика игрока
+    public void ShowPlayerStats(Hero player)
+    {
+        Console.WriteLine($"\n<<< ИГРОК >>>");
+        Console.WriteLine($"HP: {player.HP}");
+        Console.WriteLine($"Атака: {player.Damage} + {player.Weapon_.Damage} (оружие)");
+        Console.WriteLine($"Защита: {player.Defense} + {player.Armor_.ArmorDefense} (доспехи)");
+        Console.WriteLine($"Прочность оружия: {player.Weapon_.Durability}");
+        Console.WriteLine($"Прочность доспехов: {player.Armor_.Durability}");
+    }
+}
