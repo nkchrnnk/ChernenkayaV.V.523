@@ -142,4 +142,40 @@
             Console.WriteLine($"\nИгра завершена. Пройдено ходов: {turnCount}");
         }
     }
-    
+
+    //класс врага
+    class Enemy : Abstract
+    {
+        public string Name { get; set; }
+        public List<string> Types { get; set; }
+        public bool IsBoss { get; set; }
+        public int CritChance { get; set; }
+        public int FreezeChance { get; set; }
+        public bool IgnoresArmor { get; set; }
+
+        // конструктор врага
+        public Enemy(string name, int hp, int defense, int damage, List<string> types,
+            int critChance = 0, int freezeChance = 0, bool ignoresArmor = false)
+        {
+            Name = name;
+            HP = hp;
+            Defense = defense;
+            Damage = damage;
+            Types = types;
+            CritChance = critChance;
+            FreezeChance = freezeChance;
+            IgnoresArmor = ignoresArmor;
+        }
+
+        // критический удар?
+        public bool TryCriticalHit(Random random)
+        {
+            return random.Next(100) < CritChance;
+        }
+
+        // заморозка?
+        public bool TryFreeze(Random random)
+        {
+            return random.Next(100) < FreezeChance;
+        }
+    }
