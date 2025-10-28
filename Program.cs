@@ -399,4 +399,92 @@ class BattleSystem
         }
     }
 }
+class ChestSystem
+{
+    private Random random;
+
+    public ChestSystem(Random rand)
+    {
+        random = rand;
+    }
+
+    // открыть
+    public void OpenChest(Hero player)
+    {
+        int itemType = random.Next(3);
+
+        switch (itemType)
+        {
+            case 0:
+                Console.WriteLine("Вы нашли зелье здоровья!");
+                player.HP = 100;
+                Console.WriteLine("HP полностью восстановлено!");
+                break;
+
+            case 1:
+                Weapon newWeapon = GenerateRandomWeapon();
+                Console.WriteLine($"Вы нашли новое оружие:");
+                Console.WriteLine($"   Урон: {newWeapon.Damage}, Прочность: {newWeapon.Durability}");
+                ShowWeaponComparison(player, newWeapon);
+                break;
+
+            case 2:
+                Armor newArmor = GenerateRandomArmor();
+                Console.WriteLine($"Вы нашли новые доспехи:");
+                Console.WriteLine($"   Защита: {newArmor.ArmorDefense}, Прочность: {newArmor.Durability}");
+                ShowArmorComparison(player, newArmor);
+                break;
+        }
+    }
+
+    //случайное оружие
+    private Weapon GenerateRandomWeapon()
+    {
+        int damage = random.Next(10, 21);
+        int durability = random.Next(30, 61);
+        return new Weapon(durability, damage);
+    }
+
+    //случайная броня
+    private Armor GenerateRandomArmor()
+    {
+        int defense = random.Next(8, 16); 
+        int durability = random.Next(30, 61);
+        return new Armor(durability, defense);
+    }
+
+    //сравнение оружия
+    private void ShowWeaponComparison(Hero player, Weapon newWeapon)
+    {
+        Console.WriteLine($"Ваше текущее оружие - Урон: {player.Weapon_.Damage}, Прочность: {player.Weapon_.Durability}");
+        Console.Write("Заменить оружие? (y/n): ");
+
+        if (Console.ReadLine().ToLower() == "y")
+        {
+            player.Weapon_ = newWeapon;
+            Console.WriteLine("Оружие заменено!");
+        }
+        else
+        {
+            Console.WriteLine("Оставили старое оружие.");
+        }
+    }
+
+    //сравнение брони
+    private void ShowArmorComparison(Hero player, Armor newArmor)
+    {
+        Console.WriteLine($"Ваши текущие доспехи - Защита: {player.Armor_.ArmorDefense}, Прочность: {player.Armor_.Durability}");
+        Console.Write("Заменить доспехи? (y/n): ");
+
+        if (Console.ReadLine().ToLower() == "y")
+        {
+            player.Armor_ = newArmor;
+            Console.WriteLine("Доспехи заменены!");
+        }
+        else
+        {
+            Console.WriteLine("Оставили старые доспехи.");
+        }
+    }
+}
 
