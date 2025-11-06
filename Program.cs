@@ -9,7 +9,7 @@ namespace ChernenkayaV.V._523
         {
             Console.OutputEncoding = Encoding.UTF8;
             Console.InputEncoding = Encoding.UTF8;
-            
+
             new Game().Start();
         }
     }
