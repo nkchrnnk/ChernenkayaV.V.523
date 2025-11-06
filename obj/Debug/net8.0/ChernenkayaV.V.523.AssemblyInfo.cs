@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChernenkayaV.V.523")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ff5454a17266444cc6f987f7831da46f3a89a6eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53af234dbc8a0d4fbe2bbc46706fed8d7a2d0e57")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChernenkayaV.V.523")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChernenkayaV.V.523")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
